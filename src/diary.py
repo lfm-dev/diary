@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import sys
 import time
 
 MARKDOWN_EDITOR_CMD = 'micro'
@@ -24,7 +25,10 @@ def new_entry():
 
     chdir_to_current_year_dir()
     os.system(f'{MARKDOWN_EDITOR_CMD} tmp.md')
-    new_entry_title = get_entry_title()
+    try:
+        new_entry_title = get_entry_title()
+    except FileNotFoundError: # if exited text editor without saving
+        sys.exit(0)
     year = str(time.localtime().tm_year)[-2:] # only last two digits
     month = str(time.localtime().tm_mon) if len(str(time.localtime().tm_mon)) == 2 else f'0{time.localtime().tm_mon}' # so it always has two digits
     day = str(time.localtime().tm_mday) if len(str(time.localtime().tm_mday)) == 2 else f'0{time.localtime().tm_mday}' # so it always has two digits
