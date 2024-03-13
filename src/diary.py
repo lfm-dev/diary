@@ -13,6 +13,9 @@ def new_entry():
             os.mkdir(str(current_year))
         os.chdir(str(current_year))
 
+    def launch_text_editor():
+        os.system(f'{MARKDOWN_EDITOR_CMD} tmp.md')
+
     def get_entry_title():
         new_entry_title = ''
         with open('tmp.md', encoding='utf-8') as new_entry_file:
@@ -24,7 +27,7 @@ def new_entry():
         return new_entry_title
 
     chdir_to_current_year_dir()
-    os.system(f'{MARKDOWN_EDITOR_CMD} tmp.md')
+    launch_text_editor()
     try:
         new_entry_title = get_entry_title()
     except FileNotFoundError: # if exited text editor without saving
