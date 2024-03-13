@@ -10,7 +10,7 @@ def new_entry():
     def chdir_to_current_year_dir():
         current_year = time.localtime().tm_year
         if not os.path.isdir(os.path.join(DIARY_DIR_PATH, str(current_year))):
-            os.mkdir(current_year)
+            os.mkdir(str(current_year))
         os.chdir(str(current_year))
 
     def get_entry_title():
