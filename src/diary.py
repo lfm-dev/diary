@@ -26,15 +26,19 @@ def new_entry():
                     break
         return new_entry_title
 
+    def get_entry_date():
+        year = str(time.localtime().tm_year)[-2:] # only last two digits
+        month = str(time.localtime().tm_mon) if len(str(time.localtime().tm_mon)) == 2 else f'0{time.localtime().tm_mon}' # so it always has two digits
+        day = str(time.localtime().tm_mday) if len(str(time.localtime().tm_mday)) == 2 else f'0{time.localtime().tm_mday}' # so it always has two digits
+        return f'{year}-{month}-{day}'
+
     chdir_to_current_year_dir()
     launch_text_editor()
     if not os.path.isfile('tmp.md'): # user exited without saving
         sys.exit(0)
     new_entry_title = get_entry_title()
-    year = str(time.localtime().tm_year)[-2:] # only last two digits
-    month = str(time.localtime().tm_mon) if len(str(time.localtime().tm_mon)) == 2 else f'0{time.localtime().tm_mon}' # so it always has two digits
-    day = str(time.localtime().tm_mday) if len(str(time.localtime().tm_mday)) == 2 else f'0{time.localtime().tm_mday}' # so it always has two digits
-    new_entry_filename = f'{year}-{month}-{day}{"-" if new_entry_title else ""}{new_entry_title.replace(" ", "_")}.md'
+    entry_date = get_entry_date()
+    new_entry_filename = f'{entry_date}{"-" if new_entry_title else ""}{new_entry_title.replace(" ", "_")}.md'
     os.rename('tmp.md', new_entry_filename.lower())
 
 def main():
