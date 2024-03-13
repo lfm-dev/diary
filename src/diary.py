@@ -33,7 +33,7 @@ def new_entry():
     month = str(time.localtime().tm_mon) if len(str(time.localtime().tm_mon)) == 2 else f'0{time.localtime().tm_mon}' # so it always has two digits
     day = str(time.localtime().tm_mday) if len(str(time.localtime().tm_mday)) == 2 else f'0{time.localtime().tm_mday}' # so it always has two digits
     new_entry_filename = f'{year}-{month}-{day}{"-" if new_entry_title else ""}{new_entry_title.replace(" ", "_")}.md'
-    os.rename('tmp.md', new_entry_filename)
+    os.rename('tmp.md', new_entry_filename.lower())
 
 def main():
     os.chdir(DIARY_DIR_PATH)
