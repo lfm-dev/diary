@@ -31,11 +31,15 @@ def new_entry():
 
     def get_entry_date():
         if USR_ARGS.date:
-            try:
-                entry_date = datetime.datetime.strptime(USR_ARGS.date, '%d-%m-%y')
-            except ValueError:
-                print('wrong date format, use %d-%m-%y (e.g. 01-01-24)')
-                sys.exit(1)
+            if USR_ARGS.date == 'yesterday':
+                entry_date = datetime.datetime.now() - datetime.timedelta(days=1)
+
+            else:
+                try:
+                    entry_date = datetime.datetime.strptime(USR_ARGS.date, '%d-%m-%y')
+                except ValueError:
+                    print('wrong date format, use %d-%m-%y (e.g. 01-01-24)')
+                    sys.exit(1)
 
         else:
             entry_date = datetime.datetime.now()
@@ -45,8 +49,8 @@ def new_entry():
         day = str(entry_date.day) if len(str(entry_date.day)) == 2 else f'0{entry_date.day}' # so it always has two digits
         return f'{year}-{month}-{day}'
 
-    entry_date = get_entry_date()
     chdir_to_current_year_dir()
+    entry_date = get_entry_date()
     launch_text_editor()
     if not os.path.isfile('tmp.md'): # user exited without saving
         sys.exit(0)
