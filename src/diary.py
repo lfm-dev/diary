@@ -2,9 +2,12 @@
 import os
 import sys
 import time
+from get_usr_input import get_args
 
 MARKDOWN_EDITOR_CMD = 'micro'
 DIARY_DIR_PATH = '/path/to/dir'
+
+USR_ARGS, PARSER = get_args()
 
 def new_entry():
     def chdir_to_current_year_dir():
@@ -43,7 +46,8 @@ def new_entry():
 
 def main():
     os.chdir(DIARY_DIR_PATH)
-    new_entry()
+    if USR_ARGS.new_entry:
+        new_entry()
 
 
 if __name__ == '__main__':
