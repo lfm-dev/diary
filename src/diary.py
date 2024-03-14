@@ -6,7 +6,6 @@ from get_usr_input import get_args
 
 MARKDOWN_EDITOR_CMD = 'micro'
 DIARY_DIR_PATH = '/path/to/dir'
-
 USR_ARGS, PARSER = get_args()
 
 def new_entry():
@@ -52,8 +51,13 @@ def new_entry():
     chdir_to_current_year_dir()
     entry_date = get_entry_date()
     launch_text_editor()
+
+    if os.path.getsize('tmp.md') == 0: # empty file
+        os.remove('tmp.md')
+
     if not os.path.isfile('tmp.md'): # user exited without saving
         sys.exit(0)
+
     new_entry_title = get_entry_title()
     new_entry_filename = f'{entry_date}{"-" if new_entry_title else ""}{new_entry_title.replace(" ", "_")}.md'
     os.rename('tmp.md', new_entry_filename.lower())
