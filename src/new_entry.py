@@ -1,11 +1,11 @@
 import os
 import sys
 import datetime
-from diary import DIARY_DIR_PATH, USR_ARGS
+from constants import USR_ARGS
 from utils import launch_text_editor
 
 def chdir_to_entry_year_dir(entry_year):
-    if not os.path.isdir(os.path.join(DIARY_DIR_PATH, entry_year)):
+    if not os.path.isdir(entry_year):
         os.mkdir(entry_year)
     os.chdir(entry_year)
 

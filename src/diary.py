@@ -1,13 +1,9 @@
 #!/usr/bin/python3
 import os
-from get_usr_input import get_args
 from new_entry import new_entry
+from constants import DIARY_DIR_PATH, USR_ARGS
 
 #TODO export entry as pdf with pandoc: pandoc entry_name.md --pdf-engine=xelatex -o entry_name.pdf
-
-MARKDOWN_EDITOR_CMD = 'micro'
-DIARY_DIR_PATH = '/path/to/dir'
-USR_ARGS, PARSER = get_args()
 
 def main():
     os.chdir(DIARY_DIR_PATH)
