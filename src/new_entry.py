@@ -38,8 +38,8 @@ def get_entry_date():
     return f'{year}-{month}-{day}', str(entry_date.year)
 
 def new_entry():
-    entry_date, year = get_entry_date()
-    chdir_to_entry_year_dir(year)
+    entry_date, year_str = get_entry_date()
+    chdir_to_entry_year_dir(year_str)
     launch_text_editor('tmp.md')
 
     if os.path.isfile('tmp.md') and os.path.getsize('tmp.md') == 0: # empty file
