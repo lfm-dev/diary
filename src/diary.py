@@ -24,7 +24,7 @@ def new_entry():
             for line in new_entry_file:
                 if line.startswith('#'):
                     new_entry_title = line.strip('#').strip()
-                    new_entry_title = (' ').join(new_entry_title.split()) # remove extra spaces between words
+                    new_entry_title = ('_').join(new_entry_title.split()) # remove extra spaces between words
                     break
         return new_entry_title
 
@@ -59,7 +59,7 @@ def new_entry():
         sys.exit(0)
 
     new_entry_title = get_entry_title()
-    new_entry_filename = f'{entry_date}{"-" if new_entry_title else ""}{new_entry_title.replace(" ", "_")}.md'
+    new_entry_filename = f'{entry_date}{"-" if new_entry_title else ""}{new_entry_title}.md'
     os.rename('tmp.md', new_entry_filename.lower())
 
 def main():
