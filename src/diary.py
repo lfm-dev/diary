@@ -4,6 +4,7 @@ import sys
 import datetime
 from get_usr_input import get_args
 
+#TODO export entry as pdf with pandoc: pandoc entry_name.md --pdf-engine=xelatex -o entry_name.pdf
 MARKDOWN_EDITOR_CMD = 'micro'
 DIARY_DIR_PATH = '/path/to/dir'
 USR_ARGS, PARSER = get_args()
