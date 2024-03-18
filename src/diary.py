@@ -9,11 +9,10 @@ DIARY_DIR_PATH = '/path/to/dir'
 USR_ARGS, PARSER = get_args()
 
 def new_entry():
-    def chdir_to_current_year_dir():
-        current_year = datetime.datetime.now().year
-        if not os.path.isdir(os.path.join(DIARY_DIR_PATH, str(current_year))):
-            os.mkdir(str(current_year))
-        os.chdir(str(current_year))
+    def chdir_to_entry_year_dir(entry_year):
+        if not os.path.isdir(os.path.join(DIARY_DIR_PATH, entry_year)):
+            os.mkdir(entry_year)
+        os.chdir(entry_year)
 
     def launch_text_editor():
         os.system(f'{MARKDOWN_EDITOR_CMD} tmp.md')
@@ -46,13 +45,14 @@ def new_entry():
         year = str(entry_date.year)[-2:] # only last two digits
         month = str(entry_date.month) if len(str(entry_date.month)) == 2 else f'0{entry_date.month}' # so it always has two digits
         day = str(entry_date.day) if len(str(entry_date.day)) == 2 else f'0{entry_date.day}' # so it always has two digits
-        return f'{year}-{month}-{day}'
 
-    chdir_to_current_year_dir()
-    entry_date = get_entry_date()
+        return f'{year}-{month}-{day}', str(entry_date.year)
+
+    entry_date, year = get_entry_date()
+    chdir_to_entry_year_dir(year)
     launch_text_editor()
 
-    if os.path.getsize('tmp.md') == 0: # empty file
+    if os.path.isfile('tmp.md') and os.path.getsize('tmp.md') == 0: # empty file
         os.remove('tmp.md')
 
     if not os.path.isfile('tmp.md'): # user exited without saving
