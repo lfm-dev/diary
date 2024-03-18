@@ -9,14 +9,14 @@ MARKDOWN_EDITOR_CMD = 'micro'
 DIARY_DIR_PATH = '/path/to/dir'
 USR_ARGS, PARSER = get_args()
 
+def launch_text_editor(filename):
+    os.system(f'{MARKDOWN_EDITOR_CMD} {filename}')
+
 def new_entry():
     def chdir_to_entry_year_dir(entry_year):
         if not os.path.isdir(os.path.join(DIARY_DIR_PATH, entry_year)):
             os.mkdir(entry_year)
         os.chdir(entry_year)
-
-    def launch_text_editor():
-        os.system(f'{MARKDOWN_EDITOR_CMD} tmp.md')
 
     def get_entry_title():
         new_entry_title = ''
@@ -51,7 +51,7 @@ def new_entry():
 
     entry_date, year = get_entry_date()
     chdir_to_entry_year_dir(year)
-    launch_text_editor()
+    launch_text_editor('tmp.md')
 
     if os.path.isfile('tmp.md') and os.path.getsize('tmp.md') == 0: # empty file
         os.remove('tmp.md')
