@@ -20,19 +20,16 @@ def get_entry_title():
     return new_entry_title
 
 def get_entry_date():
-    if USR_ARGS.date:
-        if USR_ARGS.date == 'yesterday':
-            entry_date = datetime.datetime.now() - datetime.timedelta(days=1)
-
-        else:
-            try:
-                entry_date = datetime.datetime.strptime(USR_ARGS.date, '%d-%m-%y')
-            except ValueError:
-                print('wrong date format, use %d-%m-%y (e.g. 01-01-24)')
-                sys.exit(1)
-
-    else:
+    if not USR_ARGS.date:
         entry_date = datetime.datetime.now()
+    elif USR_ARGS.date == 'yesterday':
+        entry_date = datetime.datetime.now() - datetime.timedelta(days=1)
+    else:
+        try:
+            entry_date = datetime.datetime.strptime(USR_ARGS.date, '%d-%m-%y')
+        except ValueError:
+            print('wrong date format, use %d-%m-%y (e.g. 01-01-24)')
+            sys.exit(1)
 
     year = str(entry_date.year)[-2:] # only last two digits
     month = str(entry_date.month) if len(str(entry_date.month)) == 2 else f'0{entry_date.month}' # so it always has two digits
