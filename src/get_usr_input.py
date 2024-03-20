@@ -6,3 +6,5 @@ def get_args():
     parser.add_argument('-d', '-date', metavar='', dest='date', help='change date of writing')
     args = parser.parse_args()
     return args, parser
+
+USR_ARGS, PARSER = get_args()

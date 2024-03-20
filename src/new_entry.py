@@ -1,7 +1,7 @@
 import os
 import sys
 import datetime
-from constants import USR_ARGS
+from get_usr_input import USR_ARGS
 from utils import launch_text_editor
 
 def chdir_to_entry_year_dir(entry_year):

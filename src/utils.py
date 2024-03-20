@@ -1,5 +1,5 @@
 import os
-from constants import MARKDOWN_EDITOR_CMD
+from settings import SETTINGS
 
 def launch_text_editor(filename):
-    os.system(f'{MARKDOWN_EDITOR_CMD} {filename}')
+    os.system(f'{SETTINGS["text_editor"]} {filename}')
