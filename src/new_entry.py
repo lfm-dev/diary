@@ -37,17 +37,20 @@ def get_entry_date():
 
     return f'{year}-{month}-{day}', str(entry_date.year)
 
+def make_tmp_markdown():
+    with open('tmp.md', 'w', encoding='utf-8') as tmp:
+        tmp.write('# Entry title\n[category]\n\nIf you quit the text editor without making any changes, this entry will not be saved.')
+
 def new_entry():
     entry_date, year_str = get_entry_date()
     chdir_to_entry_year_dir(year_str)
+    make_tmp_markdown()
     launch_text_editor('tmp.md')
 
-    if os.path.isfile('tmp.md') and os.path.getsize('tmp.md') == 0: # empty file
+    new_entry_title = get_entry_title()
+    if new_entry_title == 'Entry_title':
         os.remove('tmp.md')
-
-    if not os.path.isfile('tmp.md'): # user exited without saving
         sys.exit(0)
 
-    new_entry_title = get_entry_title()
     new_entry_filename = f'{entry_date}{"-" if new_entry_title else ""}{new_entry_title}.md'
     os.rename('tmp.md', new_entry_filename.lower())
