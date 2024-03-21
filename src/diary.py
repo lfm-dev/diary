@@ -6,7 +6,7 @@ from settings import SETTINGS
 
 #TODO export entry as pdf with pandoc: pandoc entry_name.md --pdf-engine=xelatex -o entry_name.pdf
 #TODO add categories
-#TODO placeholder in tmp.md
+#TODO print table
 
 def main():
     os.chdir(SETTINGS['diary_path'])
