@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import os
-from new_entry import new_entry
-from get_usr_input import USR_ARGS, PARSER
-from settings import SETTINGS
+from components.new_entry import new_entry
+from components.get_usr_input import USR_ARGS, PARSER
+from components.settings import SETTINGS
 
 #TODO export entry as pdf with pandoc: pandoc entry_name.md --pdf-engine=xelatex -o entry_name.pdf
 #TODO add categories
