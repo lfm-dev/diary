@@ -5,6 +5,8 @@ from get_usr_input import USR_ARGS, PARSER
 from settings import SETTINGS
 
 #TODO export entry as pdf with pandoc: pandoc entry_name.md --pdf-engine=xelatex -o entry_name.pdf
+#TODO add categories
+#TODO placeholder in tmp.md
 
 def main():
     os.chdir(SETTINGS['diary_path'])
