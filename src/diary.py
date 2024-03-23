@@ -7,6 +7,7 @@ from components.settings import SETTINGS
 #TODO export entry as pdf with pandoc: pandoc entry_name.md --pdf-engine=xelatex -o entry_name.pdf
 #TODO add categories
 #TODO print table
+#TODO install.sh
 
 def main():
     os.chdir(SETTINGS['diary_path'])
